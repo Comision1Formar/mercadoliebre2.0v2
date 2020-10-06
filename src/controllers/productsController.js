@@ -16,11 +16,7 @@ module.exports = { //exporto un objeto literal con todos los metodos
                 })
                 .then(tienda => {
                     console.log(tienda)
-                    db.Products.findAll({
-                        where:{
-                            id_tienda:tienda.id
-                        }
-                    })
+                    db.Products.findAll()
                     .then(result => {
                         res.send(result)
                     })

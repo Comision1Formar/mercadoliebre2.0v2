@@ -1,7 +1,6 @@
 const db = require('../database/models');
 
 const {check,validationResult,body} = require('express-validator');
-const { route } = require('../routes');
 
 module.exports = [
     body('nombre')
@@ -41,4 +40,4 @@ module.exports = [
         }
     }).withMessage('Tenés que subir una imagen')
     
-    ]
+]

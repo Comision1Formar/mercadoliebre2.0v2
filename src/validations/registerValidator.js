@@ -65,11 +65,11 @@ module.exports = [
         }
     }).withMessage("Solo se permite png, jpg, jpeg, gif")
 
-    .custom(req => {
-        if(!reqfiles[0]){
+    /* .custom(req => {
+        if(!req.files[0]){
             return false
         }else{
             return true
         }
-    }).withMessage("Tenés que subir una imagen")
+    }).withMessage("Tenés que subir una imagen") */
 ]
