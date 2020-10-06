@@ -9,7 +9,7 @@ const controller = require('../controllers/productsController') //requiero el co
 
 /*****************VALIDACIONES*********************/
 const formSearch = require('../validations/formSearch'); //valido que lo que llega del buscador
-
+const validatorProduct = require('../validations/productValidator')
 
 /*****************MIDDLEWARES***********************/
 const upImagesProducts = require('../middlewares/upImagesProducts'); //requiero el modulo que se encarga de guardar las imagenes, vía multer

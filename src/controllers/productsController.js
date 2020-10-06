@@ -18,7 +18,7 @@ module.exports = { //exporto un objeto literal con todos los metodos
                     console.log(tienda)
                     db.Products.findAll({
                         where:{
-                            id_tienda:tienda.dataValues.id
+                            id_tienda:tienda.id
                         }
                     })
                     .then(result => {
@@ -35,24 +35,18 @@ module.exports = { //exporto un objeto literal con todos los metodos
     },
     search: function(req, res) {
   
-        let errors = validationResult(req); //devuelve los errores del formSearch
-        
-        if(errors.isEmpty()){ //si no hay errores, es decir que la consulta no venga vacía
-        let buscar = req.query.search;
-        let productos = [];
-        dbProducts.forEach(producto => {
-            if (producto.name.toLowerCase().includes(buscar)) {
-                productos.push(producto)
-            }
-        })
+       db.Products.findAll()
+       .then(result => {
         res.render('products', {
             title: "Resultado de la búsqueda",
-            productos: productos,
+            productos: result,
             css:'index.css'
         })
-    }else{
-        return res.redirect('/')
-    }
+       })
+       .catch(err => {
+           res.send(err)
+       })
+        
     },
     detalle: function(req, res) {
 
@@ -82,25 +76,24 @@ module.exports = { //exporto un objeto literal con todos los metodos
                 }) 
             })
     },
-    publicar: function(req, res, next) {
+    publicar: function(req, res) {
         let errores = validationResult(req);
-        if(errores.isEmpty()){
 
+        if(errores.isEmpty()){
             db.Users.findOne({
                 where:{
                     id:req.session.user.id
                 },
-                include:[{association: "store"}]
+                include:[{association: "tienda"}]
             })
             .then(user => {
-                console.log(user)
                 db.Products.create({
                     nombre:req.body.nombre.trim(),
                     precio:Number(req.body.precio),
                     descuento:Number(req.body.descuento),
                     descripcion:req.body.descripcion,
                     imagenes:req.files[0].filename,
-                    id_tienda:user.store.id,
+                    id_tienda:user.tienda.id,
                     id_categoria:Number(req.body.categoria)
                 })
                 .then(result => {
@@ -137,6 +130,9 @@ module.exports = { //exporto un objeto literal con todos los metodos
                     old:req.body,
                     oldCategoria:oldCategoria
                 }) 
+            })
+            .catch(err => {
+                res.send(err)
             })
         }
 

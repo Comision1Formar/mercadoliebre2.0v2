@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <%- include('partials/head') %>
+  <script src="/javascripts/userRegister.js"></script>
   <body>
     <%- include('partials/header') %>
 
@@ -21,7 +22,7 @@
                   </figure>
                 </div>
                 <div class="col-12 col-md-7 col-lg-6 col-xl-8 ">
-                  <form action="" method="POST" enctype="multipart/form-data">
+                  <form id="register" action="" method="POST" enctype="multipart/form-data">
 
                     <div class="form-row">
 
@@ -55,7 +56,7 @@
 
                       <div class="form-group col-12 col-xl-6">
                         <div class="custom-file mt-4">
-                          <input type="file" class="custom-file-input " id="customFileLang" lang="en" name="avatar">
+                          <input type="file" class="custom-file-input " id="avatar" lang="en" name="avatar">
                           <label class="custom-file-label" for="customFileLang">Imagen de perfil</label>
                           <small class="text-danger"><%= (typeof errors != 'undefined' && errors.avatar)?errors.avatar.msg: "" %> </small>
                         </div>

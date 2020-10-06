@@ -27,12 +27,13 @@ module.exports = (sequelize,dataTypes) => {
             type:dataTypes.STRING(100),
             allowNull:false
         },
-        id_tienda:{
-            type:dataTypes.INTEGER(11)
-        },
         id_categoria:{
             type:dataTypes.INTEGER(11)
+        },
+        id_tienda:{
+            type:dataTypes.INTEGER(11)
         }
+       
     }
 
     let config = {

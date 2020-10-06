@@ -2,7 +2,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": null,
-    "database": "mercadoLiebre2.0_c1",
+    "database": "mercadoliebre2.0_c1",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
